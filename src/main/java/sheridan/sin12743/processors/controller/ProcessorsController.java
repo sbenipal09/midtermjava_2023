@@ -12,14 +12,15 @@ import sheridan.sin12743.processors.controller.service.Processor;
 
 @Controller
 public class ProcessorsController {
-    @GetMapping("/input")
+
+    @GetMapping(value = {"/input","/"})
     public String showInputPage(Model model) {
         model.addAttribute("processor", new Processor());
         return "input";
     }
     private final Logger log = LoggerFactory.getLogger(ProcessorsController.class);
 
-
+    @GetMapping("/submit")
     public String processForm(
             @RequestParam("processor") String processorName,
             @RequestParam("manufacturer") String manufacturer,
@@ -41,4 +42,5 @@ public class ProcessorsController {
 
     }
 
-}
+
+    }
