@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import sheridan.sin12743.processors.controller.service.Processor;
 
 
 @Controller
@@ -18,13 +19,13 @@ public class ProcessorsController {
 //input mapping
     @GetMapping(value = {"/input","/"})
     public String input(Model model) {
-
+        model.addAttribute("processor", new Processor());
         log.trace("input() is called");
         return "input";
     }
     private final Logger log = LoggerFactory.getLogger(ProcessorsController.class);
 //submit mapping
-    @PostMapping("/submit")
+    @GetMapping("/submit")
     public String Form(
             @RequestParam("processor") String processorName,
             @RequestParam("manufacturer") String manufacturer,
