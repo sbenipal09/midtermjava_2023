@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Input Page </title>
+    <link rel = "stylesheet" href ="../static/Css/style.css" th:href="@{/Css/style.css}">
+</head>
+<body>
+<h1>Input </h1>
+<form action="/submit" method="post">
+    <label>Processor Name:</label>
+    <input type="text" name="processorname" >
+    <br><br>
+    <label>Manufacturer:</label>
+    <input type="radio" name="manufacturer" value="Intel" checked>Intel
+
+    <input type="radio" name="manufacturer" value="AMD">AMD
+    <input type="radio" name="manufacturer" value="Apple">Apple
+    <br><br>
+    <label>Windows 11 Ready</label>
+    <input type="checkbox" name="Windows 11 Ready">
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+<p style="color: red" th:text="${error}"></p>
+<footer>Sheridan College - Simranjeet Singh</footer>
+</body>
+</html>
