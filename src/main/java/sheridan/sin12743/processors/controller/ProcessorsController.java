@@ -13,7 +13,7 @@ import sheridan.sin12743.processors.controller.service.Processor;
 @Controller
 public class ProcessorsController {
 
-    @GetMapping(value = {"/input","/"})
+    @PostMapping(value = {"/input","/"})
     public String showInputPage(Model model) {
         model.addAttribute("processor", new Processor());
         return "input";
