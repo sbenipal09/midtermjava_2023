@@ -1,11 +1,14 @@
 package sheridan.sin12743.processors.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import sheridan.sin12743.processors.controller.service.Processor;
@@ -13,14 +16,15 @@ import sheridan.sin12743.processors.controller.service.Processor;
 @Controller
 public class ProcessorsController {
 
-    @PostMapping(value = {"/input","/"})
-    public String showInputPage(Model model) {
+    @GetMapping(value = {"/input","/"})
+    public String input(Model model) {
         model.addAttribute("processor", new Processor());
+        log.trace("input() is called");
         return "input";
     }
     private final Logger log = LoggerFactory.getLogger(ProcessorsController.class);
 
-    @PostMapping("/submit")
+    @PostMapping("/submit")/*
     public String processForm(
             @RequestParam("processor") String processorName,
             @RequestParam("manufacturer") String manufacturer,
@@ -40,7 +44,30 @@ public class ProcessorsController {
 
         return "output";
 
-    }
+    }*/
+    public String process(
+            @ModelAttribute("processor") Processor processor,
+            BindingResult bindingResult,
+            Model model
+    ) {
 
+        model.addAttribute("processor", processor);
+        return "redirect:/output";
+    }
+    @GetMapping("/output")
+    public String showOutputPage(Model model) {
+
+        Processor processor = retrieveProcessor();
+
+        model.addAttribute("processor", processor);
+        return "output";
+    }
+    private Processor retrieveProcessor() {
+        Processor processor = new Processor();
+        processor.setProcessorName("Example Processor");
+        processor.setManufacturer("Example Manufacturer");
+        processor.setWindows11Ready(true);
+        return processor;
+    }
 
     }
