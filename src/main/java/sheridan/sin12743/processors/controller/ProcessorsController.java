@@ -20,7 +20,7 @@ public class ProcessorsController {
     }
     private final Logger log = LoggerFactory.getLogger(ProcessorsController.class);
 
-    @GetMapping("/submit")
+    @PostMapping("/submit")
     public String processForm(
             @RequestParam("processor") String processorName,
             @RequestParam("manufacturer") String manufacturer,
