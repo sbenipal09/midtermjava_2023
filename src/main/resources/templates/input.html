@@ -8,17 +8,16 @@
 <body>
 <h1>Input </h1>
 <form action="/submit" method="post">
-    <label>Processor Name:</label>
-    <input type="text" name="processorname" >
-    <br><br>
-    <label>Manufacturer:</label>
-    <input type="radio" name="manufacturer" value="Intel" checked>Intel
+    <label for="processorName">Processor Name:</label><br>
+    <input type="text" id="processorName" name="processorName" required><br><br>
 
-    <input type="radio" name="manufacturer" value="AMD">AMD
-    <input type="radio" name="manufacturer" value="Apple">Apple
-    <br><br>
-    <label>Windows 11 Ready</label>
-    <input type="checkbox" name="Windows 11 Ready">
+    <label >Manufacturer:</label><br>
+    <input type="radio" id="intel" name="manufacturer" value="Intel" checked> Intel
+    <input type="radio" id="amd" name="manufacturer" value="AMD"> AMD
+    <input type="radio" id="apple" name="manufacturer" value="Apple"> Apple<br><br>
+
+    <label for="windows11Ready">Windows 11 Ready:</label>
+    <input type="checkbox" id="windows11Ready" name="windows11Ready"><br><br>
     <br><br>
     <input type="submit" value="Submit">
 </form>
