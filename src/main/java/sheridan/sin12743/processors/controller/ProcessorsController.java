@@ -18,13 +18,13 @@ public class ProcessorsController {
 
     @GetMapping(value = {"/input","/"})
     public String input(Model model) {
-        model.addAttribute("processor", new Processor());
+       // model.addAttribute("processor", new Processor());
         log.trace("input() is called");
         return "input";
     }
     private final Logger log = LoggerFactory.getLogger(ProcessorsController.class);
 
-    @PostMapping("/submit")/*
+    @PostMapping("/submit")
     public String processForm(
             @RequestParam("processor") String processorName,
             @RequestParam("manufacturer") String manufacturer,
@@ -33,41 +33,16 @@ public class ProcessorsController {
     ) {
 
 
-        Processor processor = new Processor();
-        processor.setProcessorName(processorName);
-        processor.setManufacturer(manufacturer);
-        processor.setWindows11Ready(windows11Ready);
 
-        model.addAttribute("processorName", processor.getProcessorName());
-        model.addAttribute("manufacturer", processor.getManufacturer());
-        model.addAttribute("windows11Ready", processor.isWindows11Ready() ? "Yes" : "No");
+        model.addAttribute("processorName",processorName);
+        model.addAttribute("manufacturer", manufacturer);
+        model.addAttribute("windows11Ready", windows11Ready? "Yes" : "No");
 
         return "output";
 
-    }*/
-    public String process(
-            @ModelAttribute("processor") Processor processor,
-            BindingResult bindingResult,
-            Model model
-    ) {
-
-        model.addAttribute("processor", processor);
-        return "redirect:/output";
     }
-    @GetMapping("/output")
-    public String showOutputPage(Model model) {
 
-        Processor processor = retrieveProcessor();
 
-        model.addAttribute("processor", processor);
-        return "output";
-    }
-    private Processor retrieveProcessor() {
-        Processor processor = new Processor();
-        processor.setProcessorName("Example Processor");
-        processor.setManufacturer("Example Manufacturer");
-        processor.setWindows11Ready(true);
-        return processor;
-    }
+
 
     }

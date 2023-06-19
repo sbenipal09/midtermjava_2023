@@ -4,16 +4,16 @@ import jakarta.validation.constraints.NotBlank;
 
 public class Processor {
     @NotBlank(message = "Processor Name is required")
-    private String processorName;
+    private String processor;
     private String manufacturer;
     private boolean windows11Ready;
 
     public String getProcessorName() {
-        return processorName;
+        return processor;
     }
 
-    public void setProcessorName(String processorName) {
-        this.processorName = processorName;
+    public void setProcessorName(String processor) {
+        this.processor = processor;
     }
 
     public String getManufacturer() {
